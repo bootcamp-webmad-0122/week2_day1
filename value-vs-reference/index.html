@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        // Objects and arrays are referenced, not passed as value
+
+        const drinks = ['Agua', 'Cocaola', 'Jagger']
+        const drinksCopy = drinks       // THIS IS NOT A COPY, just a reference to the unique array on memory
+
+        drinksCopy.pop()
+
+        console.log('ORIGINAL ->', drinks)
+        console.log('COPIA FAKE ->', drinksCopy)
+
+
+
+        const student = { name: 'Tammy', age: 33 }
+        const studenCopy = student          // THIS IS NOT A COPY
+
+        studenCopy.age = 59
+
+        console.log('ORIGINAL ->', student)
+        console.log('COPIA FAKE ->', studenCopy)
+
+
+
+
+
+        console.log('---- SOLUCION ----')
+
+
+        const drinksRealCopy = [...drinks]
+        drinksRealCopy.push('Cervemocho')
+        console.log('ORIGINAL ->', drinks)
+        console.log('COPIA REAL ->', drinksRealCopy)
+
+
+        const studentRealCopy = { ...student }
+        studentRealCopy.age = 800
+        console.log('ORIGINAL ->', student)
+        console.log('COPIA REAL ->', studentRealCopy)
+
+
+
+
+        console.log('---- SHALLOW COPY ---')
+
+        const people = [
+            { name: 'Candice', age: 25 },
+            { name: 'Tammy', age: 30 },
+            { name: 'Allen', age: 20 }
+        ]
+
+        const peopleCopy = [...people]          // THIS DOES NOT COPY NESTED OBJECTS...
+        peopleCopy[1].age = 800
+
+        console.log('ORIGINAL ->', people)
+        console.log('COPIA LIVIANA ->', peopleCopy)
+
+
+
+
+
+        console.log('---- DEEP COPY ---')
+
+        const realPeopleCopy = JSON.parse(JSON.stringify(people))       // DEEP COPY :3
+
+        realPeopleCopy[2].name = 'En el original soy Allen, aquí Batman'
+        console.log('ORIGINAL ->', people)
+        console.log('COPIA PROFUNDA ->', realPeopleCopy)
+
+    </script>
+</body>
+
+</html>
